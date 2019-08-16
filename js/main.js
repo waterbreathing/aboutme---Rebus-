@@ -32,11 +32,16 @@ if (windowWidth <= 414) {
 
 function placeArrow() {
 
-    naviTop = $('.intro').offset().top + $('.intro').outerHeight();
-    const naviLeft = $('.intro').offset().left + $('.intro').outerWidth();
+    // naviTop = $('.intro').offset().top + $('.intro').outerHeight();
+    // const naviLeft = $('.intro').offset().left + $('.intro').outerWidth();
+
+    const topPosition = $('.intro').outerHeight();
+    const leftPosition = $('.intro').outerWidth();
+
+
     $('.fa-angle-double-down').css('width', $('.fa-angle-double-down').height());
-    $('.fa-angle-double-down').css('top', naviTop - ($('.fa-angle-double-down').height()) / 2);
-    $('.fa-angle-double-down').css('left', naviLeft - ($('.fa-angle-double-down').width()) / 2);
+    $('.fa-angle-double-down').css('top', topPosition - ($('.fa-angle-double-down').height()) / 2);
+    $('.fa-angle-double-down').css('left', leftPosition - ($('.fa-angle-double-down').width()) / 2);
 
 }
 
