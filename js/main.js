@@ -4,6 +4,8 @@ const widthImg1 = $('.image1').width();
 let windowWidth = $(window).width();
 const naviHeight = $('.navi').outerHeight() + 60;
 
+let naviTop = $('.intro').offset().top + $('.intro').outerHeight();
+
 //set  initial position of .intro
 $('.intro').css('top', naviHeight);
 $('.intro').css('font-size', widthImg1 / 20);
@@ -30,7 +32,7 @@ if (windowWidth <= 414) {
 
 function placeArrow() {
 
-    const naviTop = $('.intro').offset().top + $('.intro').outerHeight();
+    naviTop = $('.intro').offset().top + $('.intro').outerHeight();
     const naviLeft = $('.intro').offset().left + $('.intro').outerWidth();
     $('.fa-angle-double-down').css('width', $('.fa-angle-double-down').height());
     $('.fa-angle-double-down').css('top', naviTop - ($('.fa-angle-double-down').height()) / 2);
@@ -125,4 +127,4 @@ $('.modal').on('click', () => $('.anyclass').removeClass('hideIntro'));
 
 placeArrow();
 
-$(window).on('resize orientationchange', placeArrow);
+$(window).on('resize orientationchange mozfullscreenchange webkitfullscreenchange fullscreenchange', placeArrow);
