@@ -126,7 +126,7 @@ img {
     text-align: center;
     font-size: 140%;
 
-    position: absolute;
+    position: fixed;
 
     background-color: rgba(255, 255, 0, 0.459);
     border-radius: 50%;

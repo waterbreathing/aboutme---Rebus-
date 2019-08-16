@@ -127,4 +127,4 @@ $('.modal').on('click', () => $('.anyclass').removeClass('hideIntro'));
 
 placeArrow();
 
-$(window).on('resize orientationchange mozfullscreenchange webkitfullscreenchange fullscreenchange', placeArrow);
+$(window).on('resize orientationchange', placeArrow);
