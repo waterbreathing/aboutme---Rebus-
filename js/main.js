@@ -21,6 +21,9 @@ $('#aboutMe').css('left', offsetImg1);
 $('#aboutMe').css('margin-left', widthImg1 * .05);
 
 
+//set initial font for resize
+$('#aboutMe').css('font-size', '40px');
+
 if (windowWidth <= 414) {
 
     $('.img1').attr('src', 'img/img1small.jpg');
@@ -83,6 +86,10 @@ function showFoot() {
 
     $('.intro').css('opacity', 1 - $(window).scrollTop() / 500);
 
+    //set initial font for resize
+    $('#aboutMe').css('font-size', '40px');
+
+
     //show .foot
     if (offsetImg3 - $(window).height() < currentScroll) {
         $('.foot').addClass('showFoot');
@@ -94,9 +101,19 @@ function showFoot() {
     $('#aboutMe').css('left', offsetImg1);
     $('#aboutMe').css('margin-left', widthImg1 * .05);
 
-    //adjust font size in #aboutMe
-    if ($('.contentAboutMe').height() >= $('#aboutMe').height()) $('#aboutMe').css('font-size', '-=1px');
-    if ($('.contentAboutMe').height() <= $('#aboutMe').height() / 2) $('#aboutMe').css('font-size', '+=1px');
+
+    //adjust font-size
+    while ($('.contentAboutMe').height() >= $('#aboutMe').height()) {
+        $('#aboutMe').css('font-size', '-=2px');
+    }
+
+    if ($('.contentAboutMe').height() <= $('#aboutMe').height() * 0.75) {
+        $('#aboutMe').css('font-size', '+=2px');
+    }
+
+    // //adjust font size in #aboutMe
+    // if ($('.contentAboutMe').height() >= $('#aboutMe').height()) $('#aboutMe').css('font-size', '-=1px');
+    // if ($('.contentAboutMe').height() <= $('#aboutMe').height() / 2) $('#aboutMe').css('font-size', '+=1px');
 
 }
 
