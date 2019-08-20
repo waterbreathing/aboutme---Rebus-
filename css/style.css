@@ -78,6 +78,10 @@ img {
 
 .showFoot {
     opacity: 1;
+    -webkit-filter: invert(0.7);
+    filter: invert(0.7);
+    /* background-image: url('https://img.pngio.com/collection-of-tv-static-png-36-images-in-collection-tv-static-png-1920_1080.png'); */
+
 }
 
 .navi {
