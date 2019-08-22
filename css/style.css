@@ -7,8 +7,9 @@
 body {
     max-width: 1600px;
     margin: 0 auto;
-    font-family: 'Poppins', sans-serif;
-    /* font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; */
+    /* font-family: 'Poppins', sans-serif; */
+
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .wrapper {
