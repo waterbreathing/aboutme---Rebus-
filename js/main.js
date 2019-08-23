@@ -4,7 +4,7 @@ const widthImg1 = $('.image1').width();
 let windowWidth = $(window).width();
 const naviHeight = $('.navi').outerHeight() + 60;
 
-//get elements
+//get some elements
 const intro = $('.intro');
 const aboutMe = $('#aboutMe');
 const navi = $('.navi');
@@ -14,19 +14,9 @@ let naviTop = intro.offset().top + intro.outerHeight();
 //set  initial position of .intro
 intro.css({ 'left': offsetImg1 + 30, 'top': naviHeight, 'font-size': widthImg1 / 20 });
 
-// intro.css('top', naviHeight);
-// intro.css('font-size', widthImg1 / 20);
-// intro.css('left', offsetImg1 + 30);
-
 //set initial position of navigation
 navi.css('margin-left', offsetImg1);
 navi.css('width', widthImg1);
-
-// set initial position of #aboutMe - needed?
-// aboutMe.css('width', widthImg1 * .9);
-// aboutMe.css('left', offsetImg1);
-// aboutMe.css('margin-left', widthImg1 * .05);
-
 
 //set initial font for resize
 aboutMe.css('font-size', '40px');
@@ -42,9 +32,6 @@ if (windowWidth <= 414) {
 
 function placeArrow() {
 
-    // naviTop = $('.intro').offset().top + $('.intro').outerHeight();
-    // const naviLeft = $('.intro').offset().left + $('.intro').outerWidth();
-
     const topPosition = intro.outerHeight();
     const leftPosition = intro.outerWidth();
 
@@ -52,6 +39,18 @@ function placeArrow() {
     $('.fa-angle-double-down').css('width', $('.fa-angle-double-down').height());
     $('.fa-angle-double-down').css('top', topPosition - ($('.fa-angle-double-down').height()) / 2);
     $('.fa-angle-double-down').css('left', leftPosition - ($('.fa-angle-double-down').width()) / 2);
+
+}
+
+function adjustFontSize() {
+    while ($('.contentAboutMe').height() >= aboutMe.height()) {
+        aboutMe.css('font-size', '-=2px');
+    }
+
+    if ($('.contentAboutMe').height() <= aboutMe.height() * 0.75) {
+        aboutMe.css('font-size', '+=2px');
+    }
+
 
 }
 
@@ -81,18 +80,17 @@ function showFoot() {
 
     //set position of .intro and font-size
     const naviHeight = $('.navi').outerHeight() + 60;
-    // intro.css('left', offsetImg1 + 30);
-    // intro.css('top', naviHeight);
-    // intro.css('font-size', widthImg1 / 20);
     intro.css({ 'left': offsetImg1 + 30, 'top': naviHeight, 'font-size': widthImg1 / 20 });
 
 
     $('.foot').css('margin-left', offsetImg1);
 
+
     //set current position of navi
     navi.css('margin-left', offsetImg1);
     navi.css('width', $(window).width() - 2 * offsetImg1);
 
+    //fade-out intro
     intro.css('opacity', 1 - $(window).scrollTop() / 500);
 
     //set initial font for resize
@@ -105,29 +103,13 @@ function showFoot() {
     }
     else $('.foot').removeClass('showFoot');
 
-    // set position of #aboutMe
-    aboutMe.css('width', widthImg1 * .9);
-    aboutMe.css('left', offsetImg1);
-    aboutMe.css('margin-left', widthImg1 * .05);
-
-
-    //adjust font-size
-    while ($('.contentAboutMe').height() >= aboutMe.height()) {
-        aboutMe.css('font-size', '-=2px');
-    }
-
-    if ($('.contentAboutMe').height() <= aboutMe.height() * 0.75) {
-        aboutMe.css('font-size', '+=2px');
-    }
-
-    // //adjust font size in #aboutMe
-    // if ($('.contentAboutMe').height() >= $('#aboutMe').height()) $('#aboutMe').css('font-size', '-=1px');
-    // if ($('.contentAboutMe').height() <= $('#aboutMe').height() / 2) $('#aboutMe').css('font-size', '+=1px');
+    adjustFontSize();
 
 }
 
 //toggle visibilty of #aboutMe and adjust font-size
 function showInfo() {
+
     const chosenClassName = $(this).attr('class');
     if ($('.anyclass').hasClass('show')) {
         $('.anyclass').removeClass('show');
@@ -135,15 +117,14 @@ function showInfo() {
 
     $('#' + chosenClassName).toggleClass('show');
 
-    //adjust font-size
-    while ($('.contentAboutMe').height() >= $('#aboutMe').height()) {
-        $('#aboutMe').css('font-size', '-=2px');
-    }
 
     if ('#' + chosenClassName == '#aboutMe') {
         $('.modal').addClass('show');
         $('.intro').addClass('hideIntro');
+        adjustFontSize();
     }
+
+
 }
 
 placeArrow();
@@ -151,13 +132,11 @@ placeArrow();
 
 $(window).on('scroll resize orientationchange', showFoot);
 $('a').on('click', showInfo);
+
 $('.anyclass').on('click', () => $('.anyclass').removeClass('show'));
 $('.anyclass').on('click', () => $('.anyclass').removeClass('hideIntro'));
 $('.anyclass').on('click', () => $('.modal').removeClass('show'));
 $('.modal').on('click', () => $('.modal, .anyclass').removeClass('show'));
 $('.modal').on('click', () => $('.anyclass').removeClass('hideIntro'));
-
-
-
 
 $(window).on('resize orientationchange', placeArrow);
